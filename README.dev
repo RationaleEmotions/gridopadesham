@@ -1,0 +1,14 @@
+# Grid-"o"-padesham
+<p align="center"> 
+<img src='./images/banner.jpg'>
+</p>
+
+## Setting up GitHub Pages site locally with Jekyll
+
+This [**_document_**](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/) should help get this setup done.
+
+Now in order to start the local server, run the below command :
+
+```
+bundle exec jekyll serve
+```
