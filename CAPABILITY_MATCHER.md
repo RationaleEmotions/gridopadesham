@@ -31,7 +31,8 @@ Lets quickly see how a typical capability matcher can look like:
 public class CrazyCapabilityMatcher extends DefaultCapabilityMatcher {
     private final String crazyNodeName = "crazyNodeName";
     @Override
-    public boolean matches(Map<String, Object> nodeCapability, Map<String, Object> requestedCapability) {
+    public boolean matches(Map<String, Object> nodeCapability, 
+                           Map<String, Object> requestedCapability) {
         boolean basicChecks = super.matches(nodeCapability, requestedCapability);
         if (! requestedCapability.containsKey(crazyNodeName)){
             // If the user didnt set the custom capability 
@@ -40,7 +41,9 @@ public class CrazyCapabilityMatcher extends DefaultCapabilityMatcher {
             // arent breaking the default behavior of the grid
             return basicChecks;
         }
-        return (basicChecks && nodeCapability.containsKey(crazyNodeName) && nodeCapability.get(crazyNodeName).equals(requestedCapability.get(crazyNodeName)));
+        return (basicChecks && 
+        nodeCapability.containsKey(crazyNodeName) && 
+        nodeCapability.get(crazyNodeName).equals(requestedCapability.get(crazyNodeName)));
     }
 }
 ```

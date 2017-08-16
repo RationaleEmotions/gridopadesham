@@ -32,7 +32,7 @@ Options:
    use regular expressions instead of exact match when specifying browser
    version. ALL nodes of a grid ecosystem would then use the same capabilityMatcher,
    as defined here.
-   Default: org.openqa.grid.internal.utils.DefaultCapabilityMatcher@64a294a6
+   Default: org.openqa.grid.internal.utils.DefaultCapabilityMatcher
 -cleanUpCycle
    <Integer> in ms : specifies how often the hub will poll running proxies
    for timed-out (i.e. hung) threads. Must also specify "timeout" option
