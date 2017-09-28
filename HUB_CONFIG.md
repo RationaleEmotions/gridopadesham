@@ -3,6 +3,8 @@
 </p>
 *Image Courtesy*: [Boloji.com](http://www.boloji.com/index.cfm?md=Content&sd=Articles&ArticleID=1452)
 
+[**<<Back Home**](./README.md)
+
 # Understanding the Hub parameters
 
 ## Configuration parameters that can be set at the Hub.
@@ -133,3 +135,5 @@ For e.g., to enable debug level logs and redirect them to the file _/logs/grid.l
 java -jar selenium-server-standalone-3.4.0.jar -role hub \
 -log /logs/grid.log -debug true
 ```
+
+[**<<Back Home**](./README.md)

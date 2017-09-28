@@ -3,6 +3,8 @@
 </p>
 *Image Courtesy*: [Boloji.com](http://www.boloji.com/index.cfm?md=Content&sd=Articles&ArticleID=1452)
 
+[**<<Back Home**](./README.md)
+
 # Understanding the Grid parameters
 
 You can tweak the behavior of the Hub/Node using the configuration parameters and do stuff such as :
@@ -20,3 +22,4 @@ and much more...
 
 ### To tame the Node with some configuration parameters read [**_on..._**](./NODE_CONFIG.md).
 
+[**<<Back Home**](./README.md)

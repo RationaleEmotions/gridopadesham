@@ -3,6 +3,8 @@
 </p>
 *Image Courtesy*: [Boloji.com](http://www.boloji.com/index.cfm?md=Content&sd=Articles&ArticleID=1452)
 
+[**<<Back Home**](./README.md)
+
 # Configuration parameters for the Node
 
 To see the documentation related to the Selenium Node, run :
@@ -127,3 +129,5 @@ Options:
    tld.company.ServletB
    Default: []
 ```
+
+[**<<Back Home**](./README.md)

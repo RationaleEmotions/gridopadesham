@@ -3,6 +3,8 @@
 </p>
 *Image Courtesy*: [Boloji.com](http://www.boloji.com/index.cfm?md=Content&sd=Articles&ArticleID=1452)
 
+[**<<Back Home**](./README.md)
+
 # Building your own proxy
 
 Before we get into learning how to build our own proxy, lets start off with the basics. 
@@ -107,3 +109,5 @@ The use-cases are end-less, but here are the ones that I am aware of:
 * **A Self healing grid**, wherein each node counts the number of tests that it has served and once the max count has been achieved, new sessions are denied. Once all the tests have run to completion, then a shutdown request is triggered from the proxy to the actual node. See [**_here_**](https://github.com/paypal/SeLion/tree/develop/server/src/main/java/com/paypal/selion/proxy)
 * **An on-demand grid**, which is powered by an underlying system such as Docker. Here there are no actual no nodes, but only a ghost proxy exists which acts as a bridge between the Hub and the Docker Daemon. See [**_here_**](https://github.com/RationaleEmotions/just-ask/blob/master/src/main/java/com/rationaleemotions/proxy/GhostProxy.java)
 * **A video recording grid**, wherein for every test, automatically video is recorded as well. See [**_here_**](https://github.com/aimmac23/selenium-video-node/tree/master/src/main/java/com/aimmac23/hub/proxy)
+
+[**<<Back Home**](./README.md)

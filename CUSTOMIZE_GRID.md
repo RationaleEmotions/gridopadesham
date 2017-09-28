@@ -3,6 +3,8 @@
 </p>
 *Image Courtesy*: [Boloji.com](http://www.boloji.com/index.cfm?md=Content&sd=Articles&ArticleID=1452)
 
+[**<<Back Home**](./README.md)
+
 # Customizing the Grid.
 
 The Grid lets you alter its behavior by one of its extension capabilities.
@@ -14,3 +16,5 @@ Click on any of the links to learn how to do each of them.
 ### [**_Add servlets_**](./CUSTOM_SERVLETS.md)
 ### [**_Build and plug-in your own console renderer_**](./CUSTOM_RENDERER.md)
 ### [**_Plugging in your own prioritizer_**](./CUSTOM_PRIORITIZER.md)
+
+[**<<Back Home**](./README.md)
