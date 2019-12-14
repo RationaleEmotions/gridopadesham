@@ -18,21 +18,21 @@ Now you would like to extend this support so that your users can run their **Viv
 Its pretty simple. 
 All that Selenium expects you to do is the following :
 
-1. Create a file with its name as  `org.openqa.selenium.remote.server.DriverProvider` and place it within a folder named `META-INF/services`. Inside this file, refer to the class that basically implements `org.openqa.selenium.remote.server.DriverProvider`. And yes, you guessed it right again, this is the [**_Service Loader_**](https://docs.oracle.com/javase/6/docs/api/java/util/ServiceLoader.html) approach that Selenium is using here. 
+1. Create a file with its name as  `org.openqa.selenium.remote.server.DriverProvider` and place it within a folder named `META-INF/services`. Inside this file, refer to the class that basically implements `org.openqa.selenium.remote.server.DriverProvider` (or) which extends `org.openqa.selenium.remote.server.DefaultDriverProvider`. And yes, you guessed it right again, this is the [**_Service Loader_**](https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html) approach that Selenium is using here. 
     
     See [**_here_**](https://github.com/MachinePublishers/jBrowserDriver/blob/master/src/META-INF/services/org.openqa.selenium.remote.server.DriverProvider) for one such sample file and see [**_here_**](https://github.com/MachinePublishers/jBrowserDriver/blob/master/src/com/machinepublishers/jbrowserdriver/SeleniumProvider.java) for an actual implementation of `DriverProvider` interface.
 
 2. Now spin off your Selenium node using a command such as below. Here we are assuming that our jar which contains the `Vivaldi` browser's client bindings is `vivaldi-browser.jar`.
 
 ```
-java -cp vivaldi-browser.jar:selenium-server-standalone-3.4.0.jar \
+java -cp vivaldi-browser.jar:selenium-server-standalone-3.141.59.jar \
 org.openqa.grid.selenium.GridLauncherV3 -role node
 ```
 
 If you are on Windows environment, then the command would be :
 
 ```
-java -cp simple-proxy.jar;selenium-server-standalone-3.4.0.jar \
+java -cp simple-proxy.jar;selenium-server-standalone-3.141.59.jar \
 org.openqa.grid.selenium.GridLauncherV3 -role node
 ```
 

@@ -16,7 +16,7 @@ The good part of all this is that you don't need to look for documentation else 
 To see the documentation related to the Selenium Hub, run :
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role hub -help
+java -jar selenium-server-standalone-3.141.59.jar -role hub -help
 ```
 
 See [**_here_**](./HUB_CONFIG_DOC.md) for the documentation of the Hub.
@@ -39,14 +39,14 @@ Quoting the definition of _Loopback address_ from [**_Webopedia_**](http://www.w
 Sometimes you may want to override this and provide the hostname to be used. You can do that as below :
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role hub \
+java -jar selenium-server-standalone-3.141.59.jar -role hub \
 -host 192.168.1.2 -port 8080
 ```
 
 Since we provided a different host value, we would need to use the same value when spinning off a node. So the command would look like this :
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role node \
+java -jar selenium-server-standalone-3.141.59.jar -role node \
 -hub http://192.168.1.2:8080/grid/register
 ```
 
@@ -54,7 +54,7 @@ java -jar selenium-server-standalone-3.4.0.jar -role node \
 The Selenium Hub by default always listens on port `4444`.In order to have the hub use a different port (say for e.g., `8080`) spawn the Hub as shown below:
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role hub -port 8080
+java -jar selenium-server-standalone-3.141.59.jar -role hub -port 8080
 ```
 
 ### Specifying the Hub configuration via a JSON file. <a name='jsonconfig'></a>
@@ -72,11 +72,11 @@ So if we were to specify the host and the port in the JSON file, it could look l
 Here's the command : 
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role hub \
+java -jar selenium-server-standalone-3.141.59.jar -role hub \
 -hubConfig hubconfig.json
 ```
 
-Incase you would like to know what else can go within this JSON configuration file, take a look [**_here_**](https://github.com/SeleniumHQ/selenium/blob/master/java/server/src/org/openqa/grid/common/defaults/DefaultHub.json)
+Incase you would like to know what else can go within this JSON configuration file, take a look [**_here_**](https://github.com/SeleniumHQ/selenium/blob/selenium-3.141.59/java/server/src/org/openqa/grid/common/defaults/DefaultHub.json)
 
 ### How do I disable some of the default servlets associated with the Hub ? <a name='disableservlets'></a>
 
@@ -97,29 +97,20 @@ RemoteWebDriver driver = new RemoteWebDriver(url, DesiredCapabilities.firefox())
 * **Hub querying URL** : **_http://localhost:4444/grid/api/hub/_** - This is the end point which can be used to get details about the Hub in a JSON format.
 * **Test Session querying URL** : **_http://localhost:4444/grid/api/testsession/_** - This is the end point which can be queried to get details about a particular session.
 * **Display Help URL** : **_http://localhost: 4444/_** - This end point gets displayed whenever an invalid end-point on the Hub is loaded. 
-
-  **Class Name** : `org.openqa.grid.web.servlet.DisplayHelpServlet` [ This is an optional servlet and can be disabled ]
-
+  * **Class Name** : `org.openqa.grid.web.servlet.DisplayHelpServlet` [ This is an optional servlet and can be disabled ]
 * **Grid console URL** : **_http://localhost:4444/grid/console/_** - This is the end point which end users can load up on their browser to see details about all the nodes that are registered with the hub.
-
-  **Class Name** : `org.openqa.grid.web.servlet.beta.ConsoleServlet` [ This is an optional servlet and can be disabled ]
-
+  * **Class Name** : `org.openqa.grid.web.servlet.beta.ConsoleServlet` [ This is an optional servlet and can be disabled ]
 * **Resources URL** : **_http://localhost:4444/grid/resources/_** - This end point is internally used by the Grid to retrieve the browser icons which get displayed in the **Grid Console URL**.
-
-  **Class Name** : `org.openqa.grid.web.servlet.ResourceServlet` [ This is an optional servlet and can be disabled ]
-
+  * **Class Name** : `org.openqa.grid.web.servlet.ResourceServlet` [ This is an optional servlet and can be disabled ]
 * **Hub lifecycle manager URL** : **_http://localhost:4444/lifecycle-manager?action=shutdown_** - This end point facilitates shutting down the Hub.
-
-  **Class Name** : `org.openqa.grid.web.servlet.LifecycleServlet` [ This is an optional servlet and can be disabled ]
-
+  * **Class Name** : `org.openqa.grid.web.servlet.LifecycleServlet` [ This is an optional servlet and can be disabled ]
 * **Heartbeat URL** : **_http://localhost:4444/heartbeat_** - This is more of a Grid v1 URL. Its not used any more but exists for compatibility purposes. This can be invoked to check if a particular node is registered with the hub.
-
-  **Class Name** : `org.openqa.grid.web.servlet.Grid1HeartbeatServlet` [ This is an optional servlet and can be disabled ]
+  * **Class Name** : `org.openqa.grid.web.servlet.Grid1HeartbeatServlet` [ This is an optional servlet and can be disabled ]
 
 You can disable some of the servlets _(the ones that are marked as optional)_. For e.g., if you wanted to disable the console servlet and the life cycle servlet, it can be done using the below command:
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role hub \
+java -jar selenium-server-standalone-3.141.59.jar -role hub \
 -withoutServlet org.openqa.grid.web.servlet.LifecycleServlet,\
 org.openqa.grid.web.servlet.beta.ConsoleServlet
 ```
@@ -132,7 +123,7 @@ The Selenium hub logs can be redirected to a file.
 For e.g., to enable debug level logs and redirect them to the file _/logs/grid.log_, use:
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role hub \
+java -jar selenium-server-standalone-3.141.59.jar -role hub \
 -log /logs/grid.log -debug true
 ```
 

@@ -14,7 +14,5 @@ Click on any of the links to learn how to do each of them.
 ### [**_Build and use your own capability matcher_**](./CAPABILITY_MATCHER.md)
 ### [**_Adding Grid support for your new WebDriver implementation_**](./SUPPORT_NEW_WEBDRIVER.md)
 ### [**_Add servlets_**](./CUSTOM_SERVLETS.md)
-### [**_Build and plug-in your own console renderer_**](./CUSTOM_RENDERER.md)
-### [**_Plugging in your own prioritizer_**](./CUSTOM_PRIORITIZER.md)
 
 [**<<Back Home**](./README.md)

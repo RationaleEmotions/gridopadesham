@@ -22,8 +22,8 @@ The default capability matcher of `Grid2` considers the following attributes of 
 
 A custom capability matcher can be built by:
 
-#### 1. Extending [**_org.openqa.grid.internal.utils.DefaultCapabilityMatcher_**](https://github.com/SeleniumHQ/selenium/blob/master/java/server/src/org/openqa/grid/internal/utils/DefaultCapabilityMatcher.java) **(or)**
-#### 2. Implementing [**_org.openqa.grid.internal.utils.CapabilityMatcher_**](https://github.com/SeleniumHQ/selenium/blob/master/java/server/src/org/openqa/grid/internal/utils/CapabilityMatcher.java)
+#### 1. Extending [**_org.openqa.grid.internal.utils.DefaultCapabilityMatcher_**](https://github.com/SeleniumHQ/selenium/blob/selenium-3.141.59/java/server/src/org/openqa/grid/internal/utils/DefaultCapabilityMatcher.java) **(or)**
+#### 2. Implementing [**_org.openqa.grid.internal.utils.CapabilityMatcher_**](https://github.com/SeleniumHQ/selenium/blob/selenium-3.141.59/java/server/src/org/openqa/grid/internal/utils/CapabilityMatcher.java)
 
 It's usually easy to build one's own capability matcher by extending `org.openqa.grid.internal.utils.DefaultCapabilityMatcher`.
 
@@ -60,7 +60,7 @@ Once we have built a jar out of our custom capability matcher, it can be wired i
 
 #### 1. Via a configuration parameter to the hub.
 ```
-java -cp caps-matcher.jar:selenium-server-standalone-3.4.0.jar \
+java -cp caps-matcher.jar:selenium-server-standalone-3.141.59.jar \
 -capabilityMatcher com.rationaleemotions.matcher.CrazyCapabilityMatcher \
 org.openqa.grid.selenium.GridLauncherV3 -role hub
 ```
@@ -68,7 +68,7 @@ org.openqa.grid.selenium.GridLauncherV3 -role hub
 If you are on Windows environment, then the command would be :
 
 ```
-java -cp caps-matcher.jar;selenium-server-standalone-3.4.0.jar \
+java -cp caps-matcher.jar;selenium-server-standalone-3.141.59.jar \
 -capabilityMatcher com.rationaleemotions.matcher.CrazyCapabilityMatcher \
 org.openqa.grid.selenium.GridLauncherV3 -role hub
 ```
@@ -85,7 +85,7 @@ Lets create a hub configuration JSON file (called `hub.json`) such as below :
 Now we wire it in using the below command:
 
 ```
-java -cp caps-matcher.jar:selenium-server-standalone-3.4.0.jar \
+java -cp caps-matcher.jar:selenium-server-standalone-3.141.59.jar \
 -hubConfig hub.json \
 org.openqa.grid.selenium.GridLauncherV3 -role hub
 ```
@@ -93,7 +93,7 @@ org.openqa.grid.selenium.GridLauncherV3 -role hub
 If you are on Windows environment, then the command would be :
 
 ```
-java -cp caps-matcher.jar;selenium-server-standalone-3.4.0.jar \
+java -cp caps-matcher.jar;selenium-server-standalone-3.141.59.jar \
 -hubConfig hub.json \
 org.openqa.grid.selenium.GridLauncherV3 -role hub
 ```
@@ -135,7 +135,7 @@ Lets create a node configuration JSON file (called `node.json`) such as below:
 Using the above node configuration file, lets start a node:
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role node \
+java -jar selenium-server-standalone-3.141.59.jar -role node \
 -nodeConfig node.json
 ```
 

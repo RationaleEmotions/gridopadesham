@@ -19,7 +19,13 @@ The Selenium Grid eco-system contains atleast two JVMs. One JVM is for the **Hub
 
 ## How is a Proxy object created ?
 
-When a selenium node is spun off, as part of the node coming up, it sends something called as a *Registration Request* to the Hub. This is the Selenium node's way of telling the hub *Hello there Selenium Hub, I am a new node and these are my capabilities. So any test from the user that matches these capabilities, you can forward them my way.This is my IP and my port so that you can forward tests to me*. The *Registration Request* comes in as a JSON PayLoad to the Hub. The Hub receives the JSON PayLoad and creates an Object that captures all the information it received from the selenium node. This Object is what is called as the **RemoteProxy**. 
+When a selenium node is spun off, as part of the node coming up, it sends something called as a *Registration Request* to the Hub. This is the Selenium node's way of telling the hub 
+
+* *Hello there Selenium Hub, I am a new node and these are my capabilities.* 
+* *So any test from the user that matches these capabilities, you can forward them my way.*
+* *This is my IP and my port so that you can forward tests to me*. 
+
+The *Registration Request* comes in as a JSON PayLoad to the Hub. The Hub receives the JSON PayLoad and creates an Object that captures all the information it received from the selenium node. This Object is what is called as the **RemoteProxy**. 
 
 _For all you design pattern enthusiasts_ : This is yet another example of the [**_Proxy Pattern_**](www.journaldev.com/1572/proxy-design-pattern).
 
@@ -41,7 +47,7 @@ Now within your custom proxy implementation, you can basically plug-in whatever 
 * Override `beforeCommand()` if you would like to do something right before every action is done. For e.g., you may want to build a request and response logger at the hub level. 
 * Override `afterCommand()` if you would like to do something right after every action is done. For e.g., you may want to build a request and response logger at the hub level. 
 
-***Tip:*** If you are trying to build something around `beforeCommand()` in terms of a logger, then remember to wrap the `javax.servlet.http.HttpServletRequest` with a customized `javax.servlet.http.HttpServletRequestWrapper` so that the stream can be read multiple times, else the request will never be forwarded to the actual node. See [**_here_**](http://mpas.github.io/post/2015/06/10/20150610_httpservletwrapper-3.1/) for a sample.
+***Tip:*** If you are trying to build something around `beforeCommand()` in terms of a logger, then remember to wrap the `javax.servlet.http.HttpServletRequest` with a customized `javax.servlet.http.HttpServletRequestWrapper` so that the stream can be read multiple times, else the request will never be forwarded to the actual node. See [**_here_**](https://howtodoinjava.com/servlets/httpservletrequestwrapper-example-read-request-body/) for a sample.
 
 ## Wiring in your custom Proxy.
 
@@ -53,7 +59,7 @@ Refer your custom proxy via one of the ways :
 1. Using the configuration parameter `-proxy`. Lets say your custom proxy is called `rationale.emotions.proxy.SimpleProxy`, then the command to start the selenium node would be : 
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role node \
+java -jar selenium-server-standalone-3.141.59.jar -role node \
 -proxy rationale.emotions.proxy.SimpleProxy
 ```
 
@@ -76,7 +82,7 @@ java -jar selenium-server-standalone-3.4.0.jar -role node \
 and now the command to start the selenium node would be :
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role node \
+java -jar selenium-server-standalone-3.141.59.jar -role node \
 -nodeConfig node.json
 ```
 
@@ -86,14 +92,14 @@ To learn more about how to configure the node make sure you read [**_here_**](./
 You need to build a jar out of your code that contains your custom proxy and then start the hub using it. For the sake of e.g., lets say our custom proxy jar name is called `simple-proxy.jar`, then the command to start the hub would be :
 
 ```
-java -cp simple-proxy.jar:selenium-server-standalone-3.4.0.jar \
+java -cp simple-proxy.jar:selenium-server-standalone-3.141.59.jar \
 org.openqa.grid.selenium.GridLauncherV3 -role hub
 ```
 
 If you are on Windows environment, then the command would be :
 
 ```
-java -cp simple-proxy.jar;selenium-server-standalone-3.4.0.jar \
+java -cp simple-proxy.jar;selenium-server-standalone-3.141.59.jar \
 org.openqa.grid.selenium.GridLauncherV3 -role hub
 ```
 

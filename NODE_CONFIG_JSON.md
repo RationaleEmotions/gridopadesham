@@ -79,6 +79,6 @@ Quoting the definition of both these timeouts from [**_Baeldung's tutorial_**](h
 > * Connection Timeout (http.connection.timeout) – the time to establish the connection with the remote host.
 > * Socket Timeout (http.socket.timeout) – the time waiting for data – after the connection was established; maximum time of inactivity between two data packets.
 
-Incase you would like to know what else can go within this JSON configuration file, take a look [**_here_**](https://github.com/SeleniumHQ/selenium/blob/master/java/server/src/org/openqa/grid/common/defaults/DefaultNodeWebDriver.json)
+Incase you would like to know what else can go within this JSON configuration file, take a look [**_here_**](https://github.com/SeleniumHQ/selenium/blob/selenium-3.141.59/java/server/src/org/openqa/grid/common/defaults/DefaultNodeWebDriver.json)
 
 [**<<Back Home**](./README.md)

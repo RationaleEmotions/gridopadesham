@@ -39,7 +39,7 @@ So add the below to your pom file :
 <dependency>
 	<groupId>org.seleniumhq.selenium</groupId>
 	<artifactId>selenium-server</artifactId>
-	<version>3.6.0</version>
+	<version>3.141.59</version>
 </dependency>
 ```
 
@@ -48,45 +48,52 @@ Now lets look at how our servlet would look like (this servlet is going to retri
 ```java
 package rationale.emotions.servlets;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import org.openqa.grid.internal.ProxySet;
-import org.openqa.grid.internal.Registry;
-import org.openqa.grid.internal.RemoteProxy;
-import org.openqa.grid.web.servlet.RegistryBasedServlet;
-
-import javax.servlet.ServletException;
+import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Iterator;
+import org.openqa.grid.internal.GridRegistry;
+import org.openqa.grid.internal.ProxySet;
+import org.openqa.grid.internal.RemoteProxy;
+import org.openqa.grid.web.servlet.RegistryBasedServlet;
+import org.openqa.selenium.json.Json;
 
 public class ListProxiesServlet extends RegistryBasedServlet {
 
-    public ListProxiesServlet() {
-        this(null);
-    }
+  public ListProxiesServlet() {
+    this(null);
+  }
 
-    public ListProxiesServlet(Registry registry) {
-        super(registry);
-    }
+  public ListProxiesServlet(GridRegistry registry) {
+    super(registry);
+  }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
-        ProxySet proxySet = getRegistry().getAllProxies();
-        Iterator<RemoteProxy> iterator = proxySet.iterator();
-        JsonArray array = new JsonArray();
-        while (iterator.hasNext()) {
-            JsonObject jsonObject = new JsonObject();
-            RemoteProxy proxy = iterator.next();
-            jsonObject.addProperty("IP_Address", proxy.getRemoteHost().toString());
-            array.add(jsonObject);
-        }
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.setStatus(200);
-        response.getWriter().append(array.toString());
-    }
+  @Override
+  protected void doGet(HttpServletRequest req, HttpServletResponse response) throws IOException {
+    ProxySet proxySet = getRegistry().getAllProxies();
+    Iterator<RemoteProxy> iterator = proxySet.iterator();
+    Iterable<RemoteProxy> iterable = () -> iterator;
+    List<Map<String, String>> maps = StreamSupport.stream(iterable.spliterator(), false)
+        .map(remoteProxy -> {
+          Map<String, String> map = new HashMap<>();
+          URL remoteHost = remoteProxy.getRemoteHost();
+          String url = String.format("%s://%s:%d", remoteHost.getProtocol(),
+              remoteHost.getHost(), remoteHost.getPort());
+          map.put("IP_Address", remoteProxy.getRemoteHost().toString());
+          return map;
+        }).collect(Collectors.toList());
+    new Json().toJson(maps);
+    response.setContentType("application/json");
+    response.setCharacterEncoding("UTF-8");
+    response.setStatus(200);
+    response.getWriter().append(new Json().toJson(maps));
+  }
 }
 ```
 
@@ -95,7 +102,7 @@ Now lets build our jar using : `mvn clean package`.
 Now lets start the Hub and inject the servlet using the command :
 
 ```
-java -cp simpleproxy-1.0-SNAPSHOT.jar:selenium-server-standalone-3.6.0.jar \ 
+java -cp simpleproxy-1.0-SNAPSHOT.jar:selenium-server-standalone-3.141.59.jar \ 
 org.openqa.grid.selenium.GridLauncherV3 -role hub \
 -servlets rationale.emotions.servlets.ListProxiesServlet
 ```
@@ -103,10 +110,11 @@ org.openqa.grid.selenium.GridLauncherV3 -role hub \
 Once the hub is started, you should see an output as below :
 
 ```
-09:39:36.529 INFO - Selenium build info: version: '3.6.0', revision: '6fbf3ec767'
-09:39:36.530 INFO - Launching Selenium Grid hub
-09:39:37.168 INFO - binding rationale.emotions.servlets.ListProxiesServlet to /grid/admin/ListProxiesServlet/*
-2017-09-28 09:39:37.191:INFO::main: Logging initialized @925ms to org.seleniumhq.jetty9.util.log.StdErrLog
+21:58:21.624 INFO [GridLauncherV3.parse] - Selenium server version: 3.141.59, revision: e82be7d358
+21:58:21.727 INFO [GridLauncherV3.lambda$buildLaunchers$5] - Launching Selenium Grid hub on port 4444
+21:58:21.763 INFO [Hub.<init>] - binding com.rationaleemotions.ListProxiesServlet to /grid/admin/ListProxiesServlet/*
+2019-12-14 21:58:22.118:INFO::main: Logging initialized @757ms to org.seleniumhq.jetty9.util.log.StdErrLog
+21:58:22.296 INFO [Hub.start] - Selenium Grid hub is up and running
 ```
 
 Now start a node and wire it into the hub.
@@ -135,32 +143,33 @@ Now lets look at a servlet that can be injected into the Selenium Node. Here's h
 ```java
 package rationale.emotions.servlets;
 
-import com.google.gson.JsonObject;
-
-import javax.servlet.ServletException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import org.openqa.selenium.json.Json;
 
 public class HelloWorldServlet extends HttpServlet {
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.setStatus(200);
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("Greeting", req.getRemoteAddr());
-        response.getWriter().append(jsonObject.toString());
-    }
+  @Override
+  protected void doGet(HttpServletRequest req, HttpServletResponse response) throws IOException {
+    response.setContentType("application/json");
+    response.setCharacterEncoding("UTF-8");
+    response.setStatus(200);
+    Map<String, String> map = new HashMap<>();
+    map.put("Greeting", req.getRemoteAddr());
+    response.getWriter().append(new Json().toJson(map));
+  }
 }
 ```
 Now lets build our jar using : `mvn clean package`.
 
 Now lets start the Node and inject the servlet using the command :
+
 ```
-java -cp simpleproxy-1.0-SNAPSHOT.jar:selenium-server-standalone-3.6.0.jar \
+java -cp simpleproxy-1.0-SNAPSHOT.jar:selenium-server-standalone-3.141.59.jar \
 org.openqa.grid.selenium.GridLauncherV3  -role node \
 -hub http://localhost:4444/grid/register \
 -servlets rationale.emotions.servlets.HelloWorldServlet
@@ -172,10 +181,14 @@ org.openqa.grid.selenium.GridLauncherV3  -role node \
 Once the node is started, you should see an output as below :
 
 ```
-10:05:32.109 INFO - Selenium build info: version: '3.6.0', revision: '6fbf3ec767'
-10:05:32.110 INFO - Launching a Selenium Grid node
-10:05:32.530 INFO - binding rationale.emotions.servlets.HelloWorldServlet to /extra/HelloWorldServlet/*
-2017-09-28 10:05:32.550:INFO::main: Logging initialized @713ms to org.seleniumhq.jetty9.util.log.StdErrLog
+22:14 $ java -cp playground-1.0-SNAPSHOT.jar:selenium-server-standalone-3.141.59.jar org.openqa.grid.selenium.GridLauncherV3 -role node -servlets com.rationaleemotions.servlets.HelloWorldServlet
+22:14:22.706 INFO [GridLauncherV3.parse] - Selenium server version: 3.141.59, revision: e82be7d358
+22:14:22.833 INFO [GridLauncherV3.lambda$buildLaunchers$7] - Launching a Selenium Grid node on port 11908
+22:14:22.883 INFO [SelfRegisteringRemote.addExtraServlets] - binding com.rationaleemotions.servlets.HelloWorldServlet to /extra/HelloWorldServlet/*
+2019-12-14 22:14:22.930:INFO::main: Logging initialized @482ms to org.seleniumhq.jetty9.util.log.StdErrLog
+22:14:23.141 INFO [WebDriverServlet.<init>] - Initialising WebDriverServlet
+22:14:23.232 INFO [SeleniumServer.boot] - Selenium Server is up and running on port 11908
+22:14:23.233 INFO [GridLauncherV3.lambda$buildLaunchers$7] - Selenium Grid node is up and ready to register to the hub
 ```
 
 Now run a `curl` command to invoke the newly injected servlet at the node's side.

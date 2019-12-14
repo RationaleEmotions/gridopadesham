@@ -16,7 +16,7 @@ The good part of all this is that you don't need to look for documentation else 
 To see the documentation related to the Selenium Node, run :
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role node -help
+java -jar selenium-server-standalone-3.141.59.jar -role node -help
 ```
 
 See [**_here_**](./NODE_CONFIG_DOC.md) for the documentation of the Node.
@@ -36,14 +36,14 @@ Lets see some of the most commonly used configuration parameters applicable for 
 You may want to spawn your node and wire it in with a Hub that is running on a different host. You can now do that using the below command :
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role node \
+java -jar selenium-server-standalone-3.141.59.jar -role node \
 -hub http://192.168.1.2:7777/grid/register
 ```
 
 You can alternately do this using the below command as well :
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role node \
+java -jar selenium-server-standalone-3.141.59.jar -role node \
 -hubHost 192.168.1.2 -hubPort 7777
 ```
 
@@ -55,7 +55,7 @@ Also remember that these two sets of configuration parameters are meant to be mu
 The Selenium node by default always listens on port `5555`.In order to have the node use a different port (say for e.g., `8080`) spawn the node as shown below:
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role node -port 8080
+java -jar selenium-server-standalone-3.141.59.jar -role node -port 8080
 ```
 
 ### Explicitly specifying the host for the node.<a name='specifyhost'></a>
@@ -69,7 +69,7 @@ Quoting the definition of _Loopback address_ from [**_Webopedia_**](http://www.w
 Sometimes you may want to override this and provide the hostname to be used. You can do that as below :
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role node \
+java -jar selenium-server-standalone-3.141.59.jar -role node \
 -host 192.168.1.2 -port 8080
 ```
 
@@ -80,7 +80,7 @@ By default when you spin off a node, it supports running 5 concurrent tests. Thi
 Now to change this value, a node could be spun off as below :
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role node \
+java -jar selenium-server-standalone-3.141.59.jar -role node \
 -maxSession 20
 ```
 
@@ -91,13 +91,13 @@ So lets say you have spun off two nodes as below :
 * **Node #1**
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role node \
+java -jar selenium-server-standalone-3.141.59.jar -role node \
 -maxSession 2
 ```
 * **Node #2**
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role node \
+java -jar selenium-server-standalone-3.141.59.jar -role node \
 -maxSession 3
 ```
 
@@ -134,7 +134,7 @@ Lets say we were to restrict the maximum session count to `2` then a node config
 Here's the command : 
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role node \
+java -jar selenium-server-standalone-3.141.59.jar -role node \
 -nodeConfig node.json
 ```
 
@@ -149,7 +149,7 @@ The Selenium node logs can be redirected to a file.
 For e.g., to enable debug level logs and redirect them to the file _/logs/node.log_, use:
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role node \
+java -jar selenium-server-standalone-3.141.59.jar -role node \
 -log /logs/node.log -debug true
 ```
 
@@ -169,7 +169,7 @@ The Node by default exposes the below end-points via servlets (For the sake of e
 You can disable some of the servlets _(the ones that are marked as optional)_. For e.g., if you wanted to disable the help servlet and the resources servlet, it can be done using the below command:
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role node \
+java -jar selenium-server-standalone-3.141.59.jar -role node \
 -withoutServlet org.openqa.grid.web.servlet.DisplayHelpServlet,\
 org.openqa.grid.web.servlet.ResourceServlet
 ```

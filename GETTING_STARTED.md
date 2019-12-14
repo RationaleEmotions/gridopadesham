@@ -58,14 +58,14 @@ In general there are two ways in which you can configure driver binaries.
 **The hub** can be started via the command:
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role hub
+java -jar selenium-server-standalone-3.141.59.jar -role hub
 ```
 This causes the `hub` to be started and listen on port `4444`.
 
 **The node** can be started via the command :
 
 ```
-java -jar selenium-server-standalone-3.4.0.jar -role node
+java -jar selenium-server-standalone-3.141.59.jar -role node
 ```
 
 This spins off a node with the following features :
