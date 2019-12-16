@@ -12,3 +12,7 @@ The Grid eco system provides a lot of configuration parameters using which its b
 
 ## Customizing the Grid :
 There are many ways in which one can customize the Grid. From being able to decide how to have the Hub match capabilities against nodes, to deciding how does each request get prioritized to letting users inject additional servlets both at the Hub and the node, a lot of customizations are possible. To learn about how these customizations can be leveraged, read [**_on..._**](./CUSTOMIZE_GRID.md)
+
+## How to.. :
+
+Programmatically Start and stop a local grid. [**_on.._**](./PROGRAMMATIC_START.md)
