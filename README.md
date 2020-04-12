@@ -4,6 +4,10 @@
 </p>
 *Image Courtesy*: [Boloji.com](http://www.boloji.com/index.cfm?md=Content&sd=Articles&ArticleID=1452)
 
+## Exploring Selenium Grid-4
+
+To learn more about the Selenium Grid-4 start [here](./GRID4.md)
+
 ## Getting started with the Grid
 Here we talk about what are the pre-requistes for using the Grid. What needs to be downloaded etc.,. read [**_on..._**](./GETTING_STARTED.md)
 
